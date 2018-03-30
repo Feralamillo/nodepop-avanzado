@@ -5,6 +5,7 @@ const path = require('path');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
+const favicon = require('express-favicon');
 
 /* jshint ignore:start */
 const db = require('./lib/connectMongoose');
@@ -14,6 +15,8 @@ const db = require('./lib/connectMongoose');
 require('./models/Anuncio');
 
 const app = express();
+
+app.use(favicon(__dirname + '/public/images/favicon.png'));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
