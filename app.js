@@ -38,6 +38,7 @@ app.locals.title = "NodePop";
 // Web
 app.use("/", require("./routes/index"));
 app.use("/anuncios", require("./routes/anuncios"));
+app.use("/lang", require("./routes/lang"));
 
 // API v1
 app.use("/apiv1/anuncios", require("./routes/apiv1/anuncios"));
