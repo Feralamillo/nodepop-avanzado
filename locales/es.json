@@ -11,5 +11,13 @@
 	"Precio": "Precio",
 	"Foto": "Foto",
 	"Tags": "Tags",
-	"Ejemplos:": "Ejemplos:"
+	"Ejemplos:": "Ejemplos:",
+	"Todos (max. 1000)": "Todos (max. 1000)",
+	"Paginado": "Paginado",
+	"Ordenado por precio ascendente": "Ordenado por precio ascendente",
+	"Ordenado por precio descendente": "Ordenado por precio descendente",
+	"Con tag mobile": "Con tag mobile",
+	"Inicio": "Inicio",
+	"Anuncios": "Anuncios",
+	"Logout": "Logout"
 }
