@@ -2,5 +2,14 @@
 	"empty_file": "el fichero {{file}} está vacio",
 	"not_found": "No encontrado",
 	"not_valid": "No válido",
-	"generic": "Hubo un error: {{err}}"
+	"generic": "Hubo un error: {{err}}",
+	"Lista de anuncios": "Lista de anuncios",
+	"Listando:": "Listando:",
+	"de": "de",
+	"Nombre": "Nombre",
+	"Venta": "Venta",
+	"Precio": "Precio",
+	"Foto": "Foto",
+	"Tags": "Tags",
+	"Ejemplos:": "Ejemplos:"
 }

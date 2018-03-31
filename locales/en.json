@@ -1,6 +1,15 @@
 {
-	"empty_file": "the file {{file}} is empty",
-	"not_found": "Not Found",
-	"not_valid": "Not valid",
-	"generic": "There was an error: {{err}}"
+  "empty_file": "the file {{file}} is empty",
+  "not_found": "Not Found",
+  "not_valid": "Not valid",
+  "generic": "There was an error: {{err}}",
+  "Lista de anuncios": "List of articles",
+  "Listando:": "Showing:",
+  "de": "of",
+  "Nombre": "Name",
+  "Venta": "Sale",
+  "Precio": "Price",
+  "Foto": "Picture",
+  "Tags": "Tags",
+  "Ejemplos:": "Examples:"
 }
