@@ -13,6 +13,7 @@ const db = require("./lib/connectMongoose");
 
 // Cargamos las definiciones de todos nuestros modelos
 require("./models/Anuncio");
+require("./models/Usuario");
 
 const app = express();
 
