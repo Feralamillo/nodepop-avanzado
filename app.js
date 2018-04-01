@@ -7,6 +7,8 @@ const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const favicon = require("express-favicon");
 
+const session = require("express-session");
+
 /* jshint ignore:start */
 const db = require("./lib/connectMongoose");
 /* jshint ignore:end */
@@ -16,9 +18,6 @@ require("./models/Anuncio");
 require("./models/Usuario");
 
 const app = express();
-
-const i18n = require("./lib/i18nConfigure")();
-app.use(i18n.init);
 
 app.use(favicon(__dirname + "/public/images/favicon.png"));
 
@@ -33,6 +32,24 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
+// Configuramos multidioma en express
+const i18n = require("./lib/i18nConfigure")();
+app.use(i18n.init);
+
+// Middleware de mi API v1
+app.use("/apiv1/anuncios", require("./routes/apiv1/anuncios"));
+
+// Middleware de control de sessiones
+app.use(
+  session({
+    name: "nodepop-session",
+    secret: "nblsakfhj7dsf87a6fbhgjdhfd8g7h6gfh5s76gh7bd6",
+    resave: false,
+    saveUninitialized: false,
+    cookie: { maxAge: 2 * 24 * 60 * 60 * 1000 } // dos dias de inactividad
+  })
+);
+
 // Global Template variables
 app.locals.title = "NodePop";
 
@@ -45,9 +62,6 @@ app.use("/lang", require("./routes/lang"));
 
 app.get("/login", loginController.index);
 app.post("/login", loginController.post);
-
-// API v1
-app.use("/apiv1/anuncios", require("./routes/apiv1/anuncios"));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
