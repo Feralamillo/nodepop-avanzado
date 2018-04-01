@@ -35,10 +35,15 @@ app.use(express.static(path.join(__dirname, "public")));
 // Global Template variables
 app.locals.title = "NodePop";
 
+const loginController = require("./routes/loginController");
+
 // Web
 app.use("/", require("./routes/index"));
 app.use("/anuncios", require("./routes/anuncios"));
 app.use("/lang", require("./routes/lang"));
+
+app.get("/login", loginController.index);
+app.post("/login", loginController.post);
 
 // API v1
 app.use("/apiv1/anuncios", require("./routes/apiv1/anuncios"));
