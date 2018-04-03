@@ -54,14 +54,14 @@ app.use(
 app.locals.title = "NodePop";
 
 const loginController = require("./routes/loginController");
+app.get("/login", loginController.index);
+app.post("/login", loginController.post);
+app.get("/logout", loginController.logout);
 
 // Web
 app.use("/", require("./routes/index"));
 app.use("/anuncios", require("./routes/anuncios"));
 app.use("/lang", require("./routes/lang"));
-
-app.get("/login", loginController.index);
-app.post("/login", loginController.post);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

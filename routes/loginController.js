@@ -35,6 +35,18 @@ class LoginController {
     // Usuario encontrado y validado
     res.redirect("/anuncios");
   }
+
+  // GET logout
+  logout(req, res, next) {
+    delete req.session.authUser; // borrar authUser
+    req.session.regenerate(function(err) {
+      if (err) {
+        next(err);
+        return;
+      }
+      res.redirect("/anuncios");
+    });
+  }
 }
 
 module.exports = new LoginController();
