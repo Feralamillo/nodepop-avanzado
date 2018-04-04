@@ -8,9 +8,10 @@ const bodyParser = require("body-parser");
 const favicon = require("express-favicon");
 
 const session = require("express-session");
+const MongoStore = require("connect-mongo")(session);
 
 /* jshint ignore:start */
-const db = require("./lib/connectMongoose");
+const conn = require("./lib/connectMongoose");
 /* jshint ignore:end */
 
 // Cargamos las definiciones de todos nuestros modelos
@@ -46,7 +47,12 @@ app.use(
     secret: "nblsakfhj7dsf87a6fbhgjdhfd8g7h6gfh5s76gh7bd6",
     resave: false,
     saveUninitialized: false,
-    cookie: { maxAge: 2 * 24 * 60 * 60 * 1000 } // dos dias de inactividad
+    cookie: { maxAge: 2 * 24 * 60 * 60 * 1000 }, // dos dias de inactividad
+    store: new MongoStore({
+      // como conectarse a mi base de datos
+      // url
+      mongooseConnection: conn
+    })
   })
 );
 
