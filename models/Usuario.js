@@ -8,17 +8,19 @@ const nodemailer = require("nodemailer");
 const transport = nodemailer.createTransport({
   service: "SendGrid",
   auth: {
-    user: "javierkeepcoding",
-    pass: "Test1234"
+    user: "user",
+    pass: "pass"
   }
 });
 
+/*
 transport.sendMail({
   to: "fernando@ongoney.com",
   from: "Nodepop <admin@example.com>",
   subject: "Prueba email",
   text: "Esto es una prueba de email"
 });
+*/
 
 const usuarioSchema = mongoose.Schema({
   name: String,

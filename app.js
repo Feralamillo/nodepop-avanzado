@@ -50,7 +50,7 @@ app.use(
     cookie: { maxAge: 2 * 24 * 60 * 60 * 1000 }, // dos dias de inactividad
     store: new MongoStore({
       // como conectarse a mi base de datos
-      // url
+      //url: "mongodb://localhost/nodepop" // fix issue from connect-mongo that appears in github
       mongooseConnection: conn
     })
   })
