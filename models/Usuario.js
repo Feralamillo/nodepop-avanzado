@@ -8,8 +8,8 @@ const nodemailer = require("nodemailer");
 const transport = nodemailer.createTransport({
   service: "SendGrid",
   auth: {
-    user: "user",
-    pass: "pass"
+    user: process.env.SENDGRID_USER,
+    pass: process.env.SENDGRID_PASSWORD
   }
 });
 
@@ -43,6 +43,7 @@ usuarioSchema.statics.hashPassword = function(plain) {
 
 //metodo instancia
 usuarioSchema.methods.sendMail = function(from, subject, text) {
+  console.log("SENDGRID_USER", process.env.SENDGRID_USER);
   // si el email es de desarrollo no lo mando, lo saco en el log
   if (this.email.includes("@example.com")) {
     console.log(`Enviando mail a ${this.email} con asunto ${subject}.`);
