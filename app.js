@@ -16,7 +16,7 @@ const conn = require("./lib/connectMongoose");
 
 // Cargamos las definiciones de todos nuestros modelos
 require("./models/Anuncio");
-require("./models/Usuario");
+const Usuario = require("./models/Usuario");
 
 const app = express();
 
@@ -50,11 +50,25 @@ app.use(
     cookie: { maxAge: 2 * 24 * 60 * 60 * 1000 }, // dos dias de inactividad
     store: new MongoStore({
       // como conectarse a mi base de datos
-      //url: "mongodb://localhost/nodepop" // fix issue from connect-mongo that appears in github
-      mongooseConnection: conn
+      url: "mongodb://localhost/nodepop" // fix issue from connect-mongo that appears in github
+      //mongooseConnection: conn
     })
   })
 );
+
+app.use(async (req, res, next) => {
+  try {
+    // si el usuario está logado, cargamos en req.user el objeto de usuario desde la base de datos
+    // para que los siguientes middlewares lo puedan usar
+    req.user = req.session.authUser
+      ? await Usuario.findById(req.session.authUser._id)
+      : null;
+    next();
+  } catch (err) {
+    next(err);
+    return;
+  }
+});
 
 // Global Template variables
 app.locals.title = "NodePop";

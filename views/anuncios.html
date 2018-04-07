@@ -8,6 +8,13 @@
           <h1>
             <%= __('Lista de anuncios') %>
           </h1>
+
+          <form action="/sendemail" method="POST">
+            <button type="submit">
+              <%= __('Send email') %>
+            </button>
+          </form>
+
           <p class="lead">
             <%= __('Listando:') %>
               <%= anuncios.length %>
@@ -64,11 +71,9 @@
                 <% }) %>
             </tbody>
           </table>
-
         </div>
       </div>
     </div>
-
   </section>
 
   <section class="ejemplos">

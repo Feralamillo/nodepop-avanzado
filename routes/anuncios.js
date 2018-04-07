@@ -4,6 +4,7 @@ const router = require("express").Router();
 const fs = require("fs");
 const Anuncio = require("mongoose").model("Anuncio");
 const sessionAuth = require("../lib/sessionAuth");
+const Usuario = require("../models/Usuario");
 
 /* GET anuncios page. */
 router.get("/", sessionAuth(), async function(req, res, next) {

@@ -41,8 +41,19 @@ usuarioSchema.statics.hashPassword = function(plain) {
   });
 };
 
-usuarioSchema.methods.sendMail = function() {
-  console.log("Enviando mail...");
+//metodo instancia
+usuarioSchema.methods.sendMail = function(from, subject, text) {
+  // si el email es de desarrollo no lo mando, lo saco en el log
+  if (this.email.includes("@example.com")) {
+    console.log(`Enviando mail a ${this.email} con asunto ${subject}.`);
+    return Promise.resolve();
+  }
+  return transport.sendMail({
+    to: this.email,
+    from: from,
+    subject: subject,
+    text: text
+  });
 };
 
 const Usuario = mongoose.model("Usuario", usuarioSchema);
