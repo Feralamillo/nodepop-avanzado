@@ -10,6 +10,8 @@ const favicon = require("express-favicon");
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 
+const jwtAuth = require("./lib/jwtAuth");
+
 /* jshint ignore:start */
 const conn = require("./lib/connectMongoose");
 /* jshint ignore:end */
@@ -37,8 +39,11 @@ app.use(express.static(path.join(__dirname, "public")));
 const i18n = require("./lib/i18nConfigure")();
 app.use(i18n.init);
 
+const loginController = require("./routes/loginController");
+
 // Middleware de mi API v1
-app.use("/apiv1/anuncios", require("./routes/apiv1/anuncios"));
+app.use("/apiv1/anuncios", jwtAuth(), require("./routes/apiv1/anuncios"));
+app.use("/loginJWT", loginController.postLoginJWT);
 
 // Middleware de control de sessiones
 app.use(
@@ -73,7 +78,6 @@ app.use(async (req, res, next) => {
 // Global Template variables
 app.locals.title = "NodePop";
 
-const loginController = require("./routes/loginController");
 app.get("/login", loginController.index);
 app.post("/login", loginController.post);
 app.get("/logout", loginController.logout);
